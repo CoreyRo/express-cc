@@ -1,9 +1,19 @@
-var express = require('express');
-var router = express.Router();
+const path = require("path");
+const router = require("express").Router();
+const api = require("./api.js");
+const users = require("./users.js");
+const html = require("./html.js");
+const auth = require("./auth.js");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
 
-module.exports = router;
+// // ******************************************************************************
+// // *** Setup api routes
+// // ==============================================================================
+router.use("/", html); //adds /api to apiRoutes
+router.use("/api", api); //adds /api to apiRoutes
+router.use("/users", users); //adds /api to apiRoutes
+router.use("/auth", auth); //adds /api to apiRoutes
+// // ******************************************************************************
+// // *** export app routes
+// // ==============================================================================
+module.exports = router
